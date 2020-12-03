@@ -1,0 +1,48 @@
+[Infra_toolbox]
+10.7.3.174 ansible_user=ec2-user
+
+[webserver]
+10.7.1.197 ansible_user=ec2-user
+
+[app_server1]
+10.7.2.166 ansible_user=ec2-user
+
+[app_server2]
+10.7.3.21 ansible_user=ec2-user
+
+[redis1]
+10.7.2.110
+
+[redis2]
+10.7.2.195
+
+[redis3]
+10.7.3.102
+
+[redis4]
+10.7.3.174
+
+[Monitoring]
+10.7.1.244 ansible_user=ec2-user
+
+[app_servers]
+10.7.2.166 ansible_user=ec2-user
+10.7.3.21 ansible_user=ec2-user
+
+[redis_nodes]
+10.7.2.110
+10.7.2.195
+10.7.3.102
+10.7.3.174
+
+
+[all_nodes]
+10.7.3.174 ansible_user=ec2-user
+10.7.1.244 ansible_user=ec2-user
+10.7.1.197 ansible_user=ec2-user
+10.7.2.166 ansible_user=ec2-user
+10.7.3.21 ansible_user=ec2-user
+10.7.2.110 
+10.7.2.195
+10.7.3.102
+10.7.3.174

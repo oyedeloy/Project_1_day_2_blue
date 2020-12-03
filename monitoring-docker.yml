@@ -1,0 +1,42 @@
+---
+- hosts: Monitoring
+  tasks:
+       
+    - name: create prometheus container
+      docker_container:
+        name: prometheus
+        image: prom/prometheus
+        volumes:
+          - /home/ec2-user/config/prometheus/:/etc/prometheus
+        ports:
+          - 9090:9090
+        restart: yes
+    - name: create alertManager
+      docker_container:
+        name: alertmanager
+        image: prom/alertmanager:v0.12.0
+        ports:
+          - 9093:9093
+        restart: yes  
+    - name: create Grafana container
+      docker_container:
+        name: grafana
+        image: grafana/grafana:7.2.1
+        ports:
+          - 3000:3000
+        restart: yes
+    - name: create node-Exporter container
+      docker_container:
+        name: node-exporter
+        image: prom/node-exporter
+        ports:
+          - 9100:9100
+        restart: yes  
+    
+
+    - name: copy prometheus.yml
+      copy:
+       src: prometheus.yml
+       dest: /home/ec2-user/config/prometheus/
+
+    

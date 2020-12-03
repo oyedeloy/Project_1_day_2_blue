@@ -1,0 +1,35 @@
+---
+- hosts: redis_nodes
+  tasks: 
+    - name: Create a data container
+      docker_container:
+        name: redis
+        image: redis:latest        
+        volumes:
+           - ./config/redis:/etc/redis
+           - ./config/data:/data
+        command: [ "redis-server", "/etc/redis/redis.conf" ]
+        ports:
+        - 6379:6379
+        state: started
+        restart: yes
+    
+    - name: Create sentinel
+      docker_container:
+        name: sentinel
+        image: redis:latest        
+        volumes:
+           - ./config/sentinel:/etc/redis           
+        command: [ "redis-sentinel", "/etc/redis/sentinel.conf" ]
+        ports:
+        - 26379:26379
+        state: started
+        restart: yes
+        
+    - name: create node-exporter container
+      docker_container:
+        name: node-exporter
+        image: prom/node-exporter
+        ports:
+          - 9100:9100    
+        
