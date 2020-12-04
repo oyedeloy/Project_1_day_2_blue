@@ -1,5 +1,5 @@
 ---
-- hosts: app_servers
+- hosts: app_server2
   tasks:
     - name: clone repo to app_server
       git: 
@@ -23,7 +23,7 @@
           - "80:80"         
         env:
            REDIS_PWD: "admin"
-           REDIS: "10.7.2.105"
+           REDIS: "10.7.2.80"
            REDIS_PORT: "6379"
 
     - name: create node-exporter container
