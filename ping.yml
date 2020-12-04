@@ -1,6 +1,0 @@
----
-- hosts: all_nodes
-  tasks: 
-    - name: simple ping
-      ping:
-      
